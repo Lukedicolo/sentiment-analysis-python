@@ -73,3 +73,18 @@ sns.pairplot(data = results_df,
             palette='tab10'
 )
 plt.show()
+
+# Explore areas where things don't seem right, e.g., Positive 1-star, Negative 5-stars.
+# 1 Star score, most positive sentiment scores
+results_df.query('Score == 1').sort_values('roberta_pos', ascending=False)['Text'].values[0:3]
+
+# 5 Star review, negative sentiments:
+results_df.query('Score == 5').sort_values('roberta_neg', ascending=False)['Text'].values[0:3]
+
+# Shows that still struggles for more nuanced language
+
+
+""" Can also set up pipelines with the transformers package: """
+# from transformers import pipeline
+# sentiment_pipeline = pipeline("sentiment-analysis")
+# sentiment_pipeline('<Sample text to be analysed>')
